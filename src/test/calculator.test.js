@@ -1,3 +1,4 @@
+const exp = require('constants');
 const Calculator = require('../calculator.js');
 
 describe('계산기', () => {
@@ -27,10 +28,18 @@ describe('계산기', () => {
   });
 
   it('더하기', () => {
-    calculator.set(999);
+    calculator.set(9);
     calculator.add(1);
 
-    expect(calculator.value).toBe(1000);
+    expect(calculator.value).toBe(10);
+  });
+
+  // Error 는 expect()에 callback 함수로 한번 감싸서 넣어주고,
+  // chaining 으로 toThrow()를 사용해 어떤 에러인지 message 를 검사하면 된다.
+  it('add 함수는 value가 100 보다 크면 에러를 던져야함', () => {
+    expect(() => {
+      calculator.add(999);
+    }).toThrow('숫자는 100을 넘을 수 없어');
   });
 
   it('빼기', () => {
