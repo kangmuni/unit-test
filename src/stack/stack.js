@@ -1,0 +1,38 @@
+class Stack {
+  constructor() {
+    this._size = 0;
+    this.head = null;
+  }
+
+  size() {
+    return this._size;
+  }
+
+  push(item) {
+    const node = { item, next: this.head };
+    this.head = node;
+    this._size++;
+
+    // head = {item: 1, next: null}
+    // head = {item: 2, next: {item: 1, next: null}}
+  }
+
+  pop() {
+    if (this.head === null) {
+      throw new Error('Stack is empty');
+    }
+    const node = this.head; // node =  {item: 2, next: {item: 1, next: null}}
+    this.head = node.next; //  head = {item: 1, next: null}
+    this._size--;
+    return node.item;
+  }
+
+  peek() {
+    if (this.head === null) {
+      throw new Error('Stack is empty');
+    }
+    return this.head.item;
+  }
+}
+
+module.exports = Stack;
